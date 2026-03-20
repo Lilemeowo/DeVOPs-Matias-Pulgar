@@ -1,30 +1,9 @@
-name: CI/CD Pipeline
+FROM node:18
 
-on:
-  push:
-  branches: [ "main" ]
+WORKDIR /app
 
-jobs:
-build:
-  runs-on: ubuntu-latest
+COPY . .
 
-  steps:
-    - name: Descargar código
-      uses: actions/checkout@v3
+RUN npm install
 
-    - name: Instalar Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
-    - name: Instalar dependencias
-      run: npm install
-
-    - name: Ejecutar pruebas
-      run: node test
-
-    - name: Construir Docker
-      run: docker build -t mi-app .
-
-    - name: Ejecutar contenedor
-      run: docker run mi-app
+CMD ["npm", "start"]
