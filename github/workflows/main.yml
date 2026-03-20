@@ -1,7 +1,7 @@
 name: CI/CD Pipeline
 
 on:
-push:
+  push:
   branches: [ "main" ]
 
 jobs:
@@ -21,7 +21,7 @@ build:
       run: npm install
 
     - name: Ejecutar pruebas
-      run: npm test
+      run: node test
 
     - name: Construir Docker
       run: docker build -t mi-app .
